@@ -8,8 +8,9 @@ function Edit() {
   const { user_id } = useParams();
 
   const [user, setUser] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
+    studentNumber: "",
     email: "",
   });
 
@@ -23,7 +24,7 @@ function Edit() {
   };
 
   const fetchUserData = () => {
-    fetch(`http://localhost/api/action.php?id=${user_id}`)
+    fetch(`http://localhost/api/api.php?id=${user_id}`)
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
@@ -37,7 +38,7 @@ function Edit() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost/api/action.php?id=${user_id}`, {
+    fetch(`http://localhost/api/api.php?id=${user_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -71,9 +72,9 @@ function Edit() {
                 <label>First Name</label>
                 <input
                   type="text"
-                  name="first_name"
+                  name="firstName"
                   className="form-control"
-                  value={user.first_name}
+                  value={user.firstName}
                   onChange={handleChange}
                 />
               </div>
@@ -81,9 +82,19 @@ function Edit() {
                 <label>Last Name</label>
                 <input
                   type="text"
-                  name="last_name"
+                  name="lastName"
                   className="form-control"
-                  value={user.last_name}
+                  value={user.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label>Student Number</label>
+                <input
+                  type="text"
+                  name="studentNumber"
+                  className="form-control"
+                  value={user.studentNumber}
                   onChange={handleChange}
                 />
               </div>

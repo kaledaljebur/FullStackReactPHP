@@ -5,7 +5,7 @@ function Userlist() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const apiUrl = "http://localhost/api/action.php";
+    const apiUrl = "http://localhost/api/api.php";
 
     fetch(apiUrl)
       .then((response) => response.json())
@@ -16,7 +16,7 @@ function Userlist() {
 
   const handleDelete = (user_id) => {
     if (confirm("Are your sure you want to remove it?")) {
-      fetch(`http://localhost/api/action.php?id=${user_id}`, {
+      fetch(`http://localhost/api/api.php?id=${user_id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -33,7 +33,7 @@ function Userlist() {
       <div className="card-header">
         <div className="row">
           <div className="col-md-6">
-            <b>Student Data</b>
+            <b>Students Data</b>
           </div>
           <div className="col-md-6">
             <Link to="/add" className="btn btn-success btn-sm float-end">
@@ -48,6 +48,7 @@ function Userlist() {
             <tr>
               <th>First Name</th>
               <th>Last Name</th>
+              <th>Student #</th>
               <th>Email</th>
               <th>Action</th>
             </tr>
@@ -55,8 +56,9 @@ function Userlist() {
           <tbody>
             {users.map((user, index) => (
               <tr key={index}>
-                <td>{user.first_name}</td>
-                <td>{user.last_name}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.studentNumber}</td>
                 <td>{user.email}</td>
                 <td>
                   <Link

@@ -5,8 +5,9 @@ function Add() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
+    studentNumber: "",
     email: "",
   });
 
@@ -22,7 +23,7 @@ function Add() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost/api/action.php", {
+    fetch("http://localhost/api/api.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +57,7 @@ function Add() {
                 <label>First Name</label>
                 <input
                   type="text"
-                  name="first_name"
+                  name="firstName"
                   className="form-control"
                   onChange={handleChange}
                 />
@@ -65,7 +66,16 @@ function Add() {
                 <label>Last Name</label>
                 <input
                   type="text"
-                  name="last_name"
+                  name="lastName"
+                  className="form-control"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label>Student Number</label>
+                <input
+                  type="text"
+                  name="studentNumber"
                   className="form-control"
                   onChange={handleChange}
                 />
